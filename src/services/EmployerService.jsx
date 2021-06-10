@@ -5,5 +5,9 @@ export default class EmployerService{
         return axios.get("https://kodlamaio-hrms.herokuapp.com/api/employer/getall");
     }
 
+    getEmployerById(id){
+        return axios.get("https://kodlamaio-hrms.herokuapp.com/api/employer/getById?id="+id)
+    }
+
     
 }

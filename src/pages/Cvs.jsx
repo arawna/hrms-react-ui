@@ -12,7 +12,7 @@ export default function Cvs() {
 
   return (
     <div>
-      <Table basic="very" celled collapsing>
+      <Table basic="very" celled>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>İş Arayan</Table.HeaderCell>
@@ -40,13 +40,13 @@ export default function Cvs() {
               </Table.Cell>
               <Table.Cell>
                 {cv.technologies.map((tech) => (
-                  <p>{tech.name}</p>
+                  <p key={tech.id}>{tech.name}</p>
                 ))}
               </Table.Cell>
 
               <Table.Cell>
                 {cv.languages.map((lang) => (
-                  <p>{lang.name + " Seviye: " + lang.level}</p>
+                  <p key={lang.id}>{lang.name + " Seviye: " + lang.level}</p>
                 ))}
               </Table.Cell>
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Icon, Menu, Table, Button } from "semantic-ui-react";
 import JobAdService from "../services/JobAdService";
 
@@ -32,7 +33,7 @@ export default function JobAds() {
               <Table.Cell>{jobAd.jobPosition.name}</Table.Cell>
               <Table.Cell>{jobAd.lastDate}</Table.Cell>
               <Table.Cell>
-                <Button
+                <Button as={Link} to={`/jobads/${jobAd.id}`}
                   content="Detayları Gör"
                   icon="right arrow"
                   labelPosition="right"

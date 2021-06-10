@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card } from "semantic-ui-react";
 import EmployerService from "../services/EmployerService";
 
@@ -14,9 +15,9 @@ export default function Employers() {
 
   return (
     <div>
-      <Card.Group fluid>
+      <Card.Group>
         {employers.map((employer) => (
-          <Card fluid>
+          <Card fluid key={employer.id}>
             <Card.Content>
               <Card.Header>{employer.companyName}</Card.Header>
               <Card.Meta>{employer.webSite}</Card.Meta>
@@ -27,7 +28,7 @@ export default function Employers() {
             </Card.Content>
             <Card.Content extra>
               <div className="ui two buttons">
-                <Button basic color="green">
+                <Button basic color="green" as={Link} to={`/employers/${employer.id}`}>
                   Detaylar
                 </Button>
                 <Button basic color="blue">
