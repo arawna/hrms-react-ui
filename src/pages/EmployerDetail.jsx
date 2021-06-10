@@ -20,7 +20,7 @@ export default function EmployerDetail() {
     jobAdService
       .getActiveAdsByCompanyId(id)
       .then((result) => setJobAds(result.data.data));
-  }, []);
+  },[id]);
 
   return (
     <div>

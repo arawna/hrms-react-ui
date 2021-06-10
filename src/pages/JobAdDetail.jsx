@@ -12,7 +12,7 @@ export default function JobAdDetail() {
   useEffect(() => {
     let jobAdService = new JobAdService();
     jobAdService.getByJobAdId(id).then((result) => setJobAd(result.data.data));
-  }, []);
+  }, [id]);
 
   return (
     <div>
