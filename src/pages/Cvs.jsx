@@ -51,7 +51,7 @@ export default function Cvs() {
               </Table.Cell>
 
               <Table.Cell>
-                <a href={cv.github}>
+                <a href={cv.github} target={"_blank"} rel="noopener noreferrer">
                   <Button secondary>
                     <Icon name="github" /> Github
                   </Button>
@@ -59,7 +59,7 @@ export default function Cvs() {
               </Table.Cell>
 
               <Table.Cell>
-                <a href={cv.linkedin}>
+                <a href={cv.linkedin} target={"_blank"} rel="noopener noreferrer">
                   <Button color="linkedin">
                     <Icon name="linkedin" /> LinkedIn
                   </Button>

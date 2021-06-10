@@ -6,7 +6,7 @@ import "../App.css";
 export default function Navi() {
   return (
     <div>
-      <Menu size="large" inverted fixed="top">
+      <Menu size="large" inverted stackable>
         <Container>
           <Menu.Item name="Ana Sayfa" as={Link} to={"/"}>
           <Icon name="home" />Ana Sayfa
@@ -16,9 +16,9 @@ export default function Navi() {
 
           <Menu.Menu position="right" style={{ margin: '0.5em' }}>
             <Button.Group>
-              <Button>Giriş yap</Button>
+              <Button as={Link} to={"/login"}>Giriş yap</Button>
               <Button.Or />
-              <Button positive>Kaydol</Button>
+              <Button positive as={Link} to={"/register"}>Kaydol</Button>
             </Button.Group>
           </Menu.Menu>
         </Container>

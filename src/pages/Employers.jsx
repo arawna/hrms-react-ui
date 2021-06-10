@@ -31,8 +31,9 @@ export default function Employers() {
                 <Button basic color="green" as={Link} to={`/employers/${employer.id}`}>
                   Detaylar
                 </Button>
+                
                 <Button basic color="blue">
-                  Web Sitesi
+                  <a href={"https://"+employer.webSite} target={"_blank"} rel="noopener noreferrer">Web Sitesi</a>                  
                 </Button>
               </div>
             </Card.Content>

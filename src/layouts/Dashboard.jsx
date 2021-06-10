@@ -10,6 +10,8 @@ import Employers from '../pages/Employers';
 import { Route } from 'react-router';
 import JobAdDetail from '../pages/JobAdDetail';
 import EmployerDetail from '../pages/EmployerDetail';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 export default function Dashboard() {
     return (
@@ -22,6 +24,8 @@ export default function Dashboard() {
                     </Grid.Column>
                     <Grid.Column width={12}>
                         <Route exact path="/" component={JobAds}/>
+                        <Route exact path="/login" component={Login}/>
+                        <Route exact path="/register" component={Register}/>
                         <Route exact path="/candidates" component={Candidates}/>
                         <Route exact path="/cvs" component={Cvs}/>
                         <Route exact path="/employers" component={Employers}/>
