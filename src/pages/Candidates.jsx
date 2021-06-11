@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card } from "semantic-ui-react";
 import CandidateService from "../services/CandidateService";
 
@@ -27,7 +28,7 @@ export default function Candidates() {
                 </Card.Content>
                 <Card.Content extra>
                   <div className="ui two buttons">
-                    <Button basic color="green">
+                    <Button basic color="green" as={Link} to={`/cvs/${candidate.id}`}>
                       Cvsini Gör
                     </Button>
                   </div>

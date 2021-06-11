@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Header, Image, Table, Button, Icon } from "semantic-ui-react";
 import CvService from "../services/CvService";
 
@@ -67,7 +68,7 @@ export default function Cvs() {
               </Table.Cell>
 
               <Table.Cell>
-                <Button animated>
+                <Button animated as={Link} to={`/cvs/${cv.candidate.id}`}>
                   <Button.Content visible>Detayları Gör</Button.Content>
                   <Button.Content hidden>
                     <Icon name="arrow right" />

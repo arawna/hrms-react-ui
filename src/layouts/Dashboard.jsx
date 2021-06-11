@@ -12,6 +12,7 @@ import JobAdDetail from '../pages/JobAdDetail';
 import EmployerDetail from '../pages/EmployerDetail';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import CvDetail from '../pages/CvDetail';
 
 export default function Dashboard() {
     return (
@@ -28,6 +29,7 @@ export default function Dashboard() {
                         <Route exact path="/register" component={Register}/>
                         <Route exact path="/candidates" component={Candidates}/>
                         <Route exact path="/cvs" component={Cvs}/>
+                        <Route exact path="/cvs/:id" component={CvDetail}/>
                         <Route exact path="/employers" component={Employers}/>
                         <Route exact path="/employers/:id" component={EmployerDetail}/>
                         <Route exact path="/jobads" component={JobAds}/>
