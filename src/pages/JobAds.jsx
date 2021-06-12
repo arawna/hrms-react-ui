@@ -47,7 +47,7 @@ export default function JobAds() {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan="5">
+            <Table.HeaderCell colSpan="6">
               <Menu floated="right" pagination>
                 <Menu.Item as="a" icon>
                   <Icon name="chevron left" />
