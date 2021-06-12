@@ -13,13 +13,14 @@ export default function JobAds() {
 
   return (
     <div>
-      <Table celled>
+      <Table celled color={"black"}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Şirket Adı</Table.HeaderCell>
             <Table.HeaderCell>Şehir</Table.HeaderCell>
             <Table.HeaderCell>Pozisyon</Table.HeaderCell>
-            <Table.HeaderCell>Son Tarih</Table.HeaderCell>
+            <Table.HeaderCell>Çalışma Yeri</Table.HeaderCell>
+            <Table.HeaderCell>Çalışma Zamanı</Table.HeaderCell>
             <Table.HeaderCell>Detaylar</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -31,7 +32,8 @@ export default function JobAds() {
               <Table.Cell>{jobAd.employer.companyName}</Table.Cell>
               <Table.Cell>{jobAd.city.name}</Table.Cell>
               <Table.Cell>{jobAd.jobPosition.name}</Table.Cell>
-              <Table.Cell>{jobAd.lastDate}</Table.Cell>
+              <Table.Cell>{jobAd.workPlace.name}</Table.Cell>
+              <Table.Cell>{jobAd.workTime.name}</Table.Cell>
               <Table.Cell>
                 <Button as={Link} to={`/jobads/${jobAd.id}`}
                   content="Detayları Gör"

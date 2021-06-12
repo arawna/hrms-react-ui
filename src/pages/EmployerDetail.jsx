@@ -92,6 +92,8 @@ export default function EmployerDetail() {
                 <Table.HeaderCell>İş Pozisyonu</Table.HeaderCell>
                 <Table.HeaderCell>Şehir</Table.HeaderCell>
                 <Table.HeaderCell>Açık Pozisyon</Table.HeaderCell>
+                <Table.HeaderCell>Çalışma Yeri</Table.HeaderCell>
+                <Table.HeaderCell>Çalışma Zamanı</Table.HeaderCell>
                 <Table.HeaderCell>Detaylar</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
@@ -102,6 +104,8 @@ export default function EmployerDetail() {
                   <Table.Cell>{jobAd.jobPosition?.name}</Table.Cell>
                   <Table.Cell>{jobAd.city?.name}</Table.Cell>
                   <Table.Cell>{jobAd.openPositions}</Table.Cell>
+                  <Table.Cell>{jobAd.workPlace?.name}</Table.Cell>
+                  <Table.Cell>{jobAd.workTime?.name}</Table.Cell>
                   <Table.Cell>
                     <Button animated as={Link} to={`/jobads/${jobAd.id}`}>
                       <Button.Content visible>Detayları Gör</Button.Content>

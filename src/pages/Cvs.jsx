@@ -13,7 +13,7 @@ export default function Cvs() {
 
   return (
     <div>
-      <Table basic="very" celled>
+      <Table celled color={"black"}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>İş Arayan</Table.HeaderCell>

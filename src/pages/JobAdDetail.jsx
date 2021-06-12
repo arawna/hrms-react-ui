@@ -118,6 +118,16 @@ export default function JobAdDetail() {
                 </Table.Row>
 
                 <Table.Row>
+                  <Table.Cell>Çalışma Yeri</Table.Cell>
+                  <Table.Cell>{jobAd.workPlace?.name}</Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
+                  <Table.Cell>Çalışma Zamanı</Table.Cell>
+                  <Table.Cell>{jobAd.workTime?.name}</Table.Cell>
+                </Table.Row>
+
+                <Table.Row>
                   <Table.Cell>Minimum Maaş</Table.Cell>
                   <Table.Cell>{jobAd.minSalary}</Table.Cell>
                 </Table.Row>
