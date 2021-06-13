@@ -13,5 +13,9 @@ export default class JobAdService{
         return axios.get("https://kodlamaio-hrms.herokuapp.com/api/jobAd/getActiveAndCompanyId?companyId="+id)
     }
 
+    add(values){
+        return axios.post("https://kodlamaio-hrms.herokuapp.com/api/jobAd/create",values)
+    }
+
     
 }

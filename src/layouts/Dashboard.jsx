@@ -13,6 +13,7 @@ import EmployerDetail from '../pages/EmployerDetail';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import CvDetail from '../pages/CvDetail';
+import JobAdCreate from '../pages/JobAdCreate';
 
 export default function Dashboard() {
     return (
@@ -33,6 +34,7 @@ export default function Dashboard() {
                         <Route exact path="/employers" component={Employers}/>
                         <Route exact path="/employers/:id" component={EmployerDetail}/>
                         <Route exact path="/jobads" component={JobAds}/>
+                        <Route exact path="/jobAdCreate" component={JobAdCreate}/>
                         <Route exact path="/jobads/:id" component={JobAdDetail}/>
                     </Grid.Column>
                 </Grid>

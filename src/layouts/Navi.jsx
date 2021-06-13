@@ -15,6 +15,9 @@ export default function Navi() {
           <Menu.Item name="Cvler" as={Link} to={"/cvs"} />
 
           <Menu.Menu position="right" style={{ margin: '0.5em' }}>
+            <Button primary as={Link} to={"/jobAdCreate"}>
+              İlan Ekle
+            </Button>
             <Button.Group>
               <Button as={Link} to={"/login"}>Giriş yap</Button>
               <Button.Or />
