@@ -7,6 +7,7 @@ import JobPositionService from "../services/JobPositionService";
 import WorkTimeService from "../services/WorkTimeService";
 import WorkPlaceService from "../services/WorkPlaceService";
 import JobAdService from "../services/JobAdService";
+import { useHistory } from "react-router-dom";
 
 export default function JobAdCreate() {
   let jobAdService = new JobAdService();
@@ -22,6 +23,8 @@ export default function JobAdCreate() {
     maxSalary: Yup.number().min(0,"0 Dan az olamaz").required("Bu alan zorunludur")
   });
 
+  const history = useHistory();
+
   const formik = useFormik({
     initialValues: {
       description: "",
@@ -36,8 +39,10 @@ export default function JobAdCreate() {
     },
     validationSchema: JobAdvertAddSchema,
     onSubmit: (values) => {
-      values.employerId = 3;
+      values.employerId = 4;
       jobAdService.add(values).then((result) => console.log(result.data.data));
+      alert("İş ilanı eklendi personelin onayı ardından listelenecektir");
+      history.push("/jobads");
     },
   });
 
