@@ -95,6 +95,7 @@ export default function JobAdCreate() {
       <Card.Content>
       <Form onSubmit={formik.handleSubmit}>
         <Form.Field style={{marginBottom: "1rem"}}>
+          <label>İş Posisyonu</label>
         <Dropdown
           clearable
           item
@@ -116,6 +117,7 @@ export default function JobAdCreate() {
           )}
           </Form.Field>
           <Form.Field>
+          <label>Şehir</label>
             <Dropdown
               clearable
               item
@@ -137,6 +139,7 @@ export default function JobAdCreate() {
               )}
           </Form.Field>
           <Form.Field>
+          <label>Çalışma yeri</label>
           <Dropdown
                   clearable
                   item
@@ -158,6 +161,7 @@ export default function JobAdCreate() {
                 )}
           </Form.Field>
           <Form.Field>
+          <label>Çalışma Süresi</label>
                 <Dropdown
                   clearable
                   item
@@ -179,6 +183,7 @@ export default function JobAdCreate() {
               <Form.Field>
               <Grid stackable>
               <Grid.Column width={8}>
+              <label style={{fontWeight: "bold"}}>Maaş aralığı MİNİMUM</label>
                 <Input
                   style={{ width: "100%" }}
                   type="number"
@@ -196,6 +201,7 @@ export default function JobAdCreate() {
                 )}
                 </Grid.Column>
                 <Grid.Column width={8}>
+                <label style={{fontWeight: "bold"}}>Maaş aralığı MAKSİMUM</label>
                 <Input
                   style={{ width: "100%" }}
                   type="number"
@@ -218,6 +224,7 @@ export default function JobAdCreate() {
               <Form.Field>
               <Grid stackable>
               <Grid.Column width={8}>
+              <label style={{fontWeight: "bold"}}>Açık Posisyon sayısı</label>
                 <Input
                   style={{ width: "100%" }}
                   id="openPositions"
@@ -236,6 +243,7 @@ export default function JobAdCreate() {
                 )}
                 </Grid.Column>
                 <Grid.Column width={8}>
+                <label style={{fontWeight: "bold"}}>Son başvuru tarihi</label>
                 <Input
                   style={{ width: "100%" }}
                   type="date"
@@ -258,6 +266,7 @@ export default function JobAdCreate() {
               </Form.Field>
 
               <Form.Field>
+              <label>Açıklama</label>
                 <TextArea
                   placeholder="Açıklama"
                   style={{ minHeight: 100 }}

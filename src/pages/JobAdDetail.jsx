@@ -16,6 +16,12 @@ export default function JobAdDetail() {
 
   return (
     <div>
+      <Card fluid color={"black"}>
+        <Card.Content header="Açıklama" />
+        <Card.Content>
+            {jobAd.description}
+        </Card.Content>
+      </Card>
       <Grid stackable>
         <Grid.Row>
           <Grid.Column width={6}>
@@ -157,12 +163,7 @@ export default function JobAdDetail() {
         </Grid.Row>
       </Grid>
 
-      <Card fluid>
-        <Card.Content header="Açıklama" />
-        <Card.Content>
-            {jobAd.description}
-        </Card.Content>
-      </Card>
+      
     </div>
   );
 }

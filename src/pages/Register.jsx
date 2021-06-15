@@ -19,24 +19,28 @@ export default function Register() {
         <Segment stacked>
           <Grid stackable>
             <Grid.Column width={8}>
+              <label>İsim</label>
               <Form.Input
                 fluid
                 icon="user"
                 iconPosition="left"
                 placeholder="İsim"
               />
+              <label>Soy İsim</label>
               <Form.Input
                 fluid
                 icon="user"
                 iconPosition="left"
                 placeholder="Soy isim"
               />
+              <label>Kimlik Numarası</label>
               <Form.Input
                 fluid
                 icon="id card"
                 iconPosition="left"
                 placeholder="Kimlik numarası"
               />
+              <label>Doğum Tarihi</label>
               <Form.Input
                 fluid
                 icon="calendar times"
@@ -47,18 +51,21 @@ export default function Register() {
             </Grid.Column>
 
             <Grid.Column width={8}>
+            <label>Email</label>
               <Form.Input
                 fluid
                 icon="mail"
                 iconPosition="left"
                 placeholder="E-mail adresi"
               />
+              <label>Email Tekrar</label>
               <Form.Input
                 fluid
                 icon="mail"
                 iconPosition="left"
                 placeholder="E-mail adresi tekrar"
               />
+              <label>Şifre</label>
               <Form.Input
                 fluid
                 icon="lock"
@@ -66,6 +73,7 @@ export default function Register() {
                 placeholder="Şifre"
                 type="password"
               />
+              <label>Şifre Tekrar</label>
               <Form.Input
                 fluid
                 icon="lock"
