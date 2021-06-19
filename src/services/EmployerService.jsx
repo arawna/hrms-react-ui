@@ -9,5 +9,9 @@ export default class EmployerService{
         return axios.get("https://kodlamaio-hrms.herokuapp.com/api/employer/getById?id="+id)
     }
 
+    registerEmployer(values){
+        return axios.post("https://kodlamaio-hrms.herokuapp.com/api/employer/add",values)
+    }
+
     
 }
