@@ -10,12 +10,14 @@ export default function Login() {
       </Header>
       <Form size="large">
         <Segment stacked>
+          <label><b>Email</b></label>
           <Form.Input
             fluid
             icon="user"
             iconPosition="left"
             placeholder="E-mail adresi"
           />
+          <label><b>Şifre</b></label>
           <Form.Input
             fluid
             icon="lock"
@@ -29,8 +31,8 @@ export default function Login() {
           </Button>
         </Segment>
       </Form>
-      <Message>
-        Kayıtlı değilmisin? <Link to={"/register"}>Şimdi Kaydol</Link>
+      <Message info>
+        Kayıtlı değilmisin? <b><Link to={"/register"}>Şimdi Kaydol</Link></b>
       </Message>
     </div>
   );

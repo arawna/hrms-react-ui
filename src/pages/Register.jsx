@@ -61,7 +61,7 @@ export default function Register() {
           <Grid stackable>
             <Grid.Column width={8}>
             <div style={{marginTop:"1em"}}>
-              <label>İsim</label>
+              <label><b>İsim</b></label>
               
               <Form.Input
                 fluid
@@ -83,7 +83,7 @@ export default function Register() {
               }
               </div>
               <div style={{marginTop:"1em"}}>
-              <label>Soy İsim</label>
+              <label><b>Soy İsim</b></label>
               <Form.Input
                 fluid
                 icon="user"
@@ -102,7 +102,7 @@ export default function Register() {
                 )}
               </div>
               <div style={{marginTop:"1em"}}>
-              <label>Kimlik Numarası</label>
+              <label><b>Kimlik Numarası</b></label>
               <Form.Input
                 fluid
                 icon="id card"
@@ -121,7 +121,7 @@ export default function Register() {
                 )}
               </div>
               <div style={{marginTop:"1em"}}>
-              <label>Doğum Tarihi</label>
+              <label><b>Doğum Tarihi</b></label>
               <Form.Input
                 fluid
                 icon="calendar times"
@@ -146,7 +146,7 @@ export default function Register() {
 
             <Grid.Column width={8}>
               <div style={{marginTop:"1em"}}>
-            <label>Email</label>
+            <label><b>Email</b></label>
               <Form.Input
                 fluid
                 icon="mail"
@@ -165,7 +165,7 @@ export default function Register() {
                 )}
               </div>
               <div style={{marginTop:"1em"}}>
-              <label>Email Tekrar</label>
+              <label><b>Email Tekrar</b></label>
               <Form.Input
                 fluid
                 icon="mail"
@@ -182,7 +182,7 @@ export default function Register() {
                 )}
               </div>
               <div style={{marginTop:"1em"}}>
-              <label>Şifre</label>
+              <label><b>Şifre</b></label>
               <Form.Input
                 fluid
                 icon="lock"
@@ -201,7 +201,7 @@ export default function Register() {
                 )}
               </div>
               <div style={{marginTop:"1em"}}>
-              <label>Şifre Tekrar</label>
+              <label><b>Şifre Tekrar</b></label>
               <Form.Input
                 fluid
                 icon="lock"
