@@ -228,7 +228,7 @@ export default function Register() {
           </Button>
         </Segment>
       </Form>
-      <Message info><Link to={"/registerEmployer"}>İşveren olarak kaydolmak için buraya tıkla</Link></Message>
+      <Message info><Link to={"/registerEmployer"}><b>İşveren olarak kaydolmak için buraya tıkla</b></Link></Message>
     </div>
   );
 }

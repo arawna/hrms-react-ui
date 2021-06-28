@@ -17,7 +17,7 @@ export default function Employers() {
     <div>
       <Card.Group>
         {employers.map((employer) => (
-          <Card fluid key={employer.id}>
+          <Card fluid key={employer.id} color={"black"}>
             <Card.Content>
               <Card.Header>{employer.companyName}</Card.Header>
               <Card.Meta>{employer.webSite}</Card.Meta>

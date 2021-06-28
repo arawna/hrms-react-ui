@@ -17,7 +17,7 @@ export default function CvDetail() {
   return (
     <div>
       <Card.Group>
-        <Card fluid>
+        <Card fluid color={"black"}>
           <Card.Content>
             {cv.images?.map((image) => (
               <Image
@@ -125,12 +125,12 @@ export default function CvDetail() {
           <Card.Content extra></Card.Content>
         </Card>
       </Card.Group>
-      <Card fluid>
+      <Card fluid color={"black"}>
         <Card.Content header="Biyografi" />
         <Card.Content description={cv.biography} />
       </Card>
 
-      <Card fluid>
+      <Card fluid color={"black"}>
         <Card.Content header="Okuduğu Okullar" />
         <Table celled color={"black"}>
           <Table.Header>
@@ -155,7 +155,7 @@ export default function CvDetail() {
         </Table>
       </Card>
 
-      <Card fluid>
+      <Card fluid color={"black"}>
         <Card.Content header="Yabancı Diller" />
         <Table celled color={"black"}>
           <Table.Header>
@@ -176,7 +176,7 @@ export default function CvDetail() {
         </Table>
       </Card>
 
-      <Card fluid>
+      <Card fluid color={"black"}>
         <Card.Content header="Yazılım Teknolojileri" />
         <Table celled color={"black"}>
           <Table.Header>

@@ -18,7 +18,7 @@ export default function Candidates() {
       <Card.Group>
           {
               candidates.map(candidate =>(
-                <Card key={candidate.id} fluid>
+                <Card key={candidate.id} fluid color={"black"}>
                 <Card.Content>
                   <Card.Header>{candidate.firstName+" "+candidate.lastName}</Card.Header>
                   <Card.Meta>{candidate.dateOfBirth}</Card.Meta>

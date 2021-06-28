@@ -17,5 +17,9 @@ export default class JobAdService{
         return axios.post("https://kodlamaio-hrms.herokuapp.com/api/jobAd/create",values)
     }
 
+    getPageableAndFilterJobPostings(pageNo, pageSize, filterOption){
+        return axios.post(`https://kodlamaio-hrms.herokuapp.com/api/jobAd/getByActiveAndFilter?pageNo=${pageNo}&pageSize=${pageSize}`,filterOption);
+    }
+
     
 }
