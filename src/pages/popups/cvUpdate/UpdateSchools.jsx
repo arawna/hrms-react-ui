@@ -13,10 +13,11 @@ export default function UpdateSchools({cvId}) {
 
   let schoolService = new SchoolService();
   useEffect(() => {    
+    let schoolService = new SchoolService();
     schoolService.getByCvId(authItem[0].user.id).then((result) => {
       setSchools(result.data.data);
     });
-  });
+  },[authItem]);
 
   let schoolAddSchema = Yup.object().shape({
     department: Yup.string().required("Bu alan zorunlu").min(2,"Minimum 2 karakter uzunlugunda olmalıdır"),

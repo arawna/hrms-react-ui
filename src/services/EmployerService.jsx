@@ -13,5 +13,8 @@ export default class EmployerService{
         return axios.post("https://kodlamaio-hrms.herokuapp.com/api/employer/add",values)
     }
 
+    update(values){
+        return axios.put("https://kodlamaio-hrms.herokuapp.com/api/employer/update",values)
+    }
     
 }

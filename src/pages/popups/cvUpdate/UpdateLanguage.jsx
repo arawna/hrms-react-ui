@@ -12,10 +12,11 @@ export default function UpdateLanguage({ cvId }) {
   let languageService = new LanguageService();
 
   useEffect(() => {
+    let languageService = new LanguageService();
     languageService.getByCvId(cvId).then((result) => {
       setLanguages(result.data.data);
     });
-  });
+  },[cvId]);
 
   let languageAddSchema = Yup.object().shape({
     name: Yup.string()

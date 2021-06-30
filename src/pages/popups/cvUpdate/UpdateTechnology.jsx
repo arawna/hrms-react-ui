@@ -11,10 +11,11 @@ export default function UpdateTechnology({ cvId }) {
 
   let technologyService = new TechnologyService();
   useEffect(() => {
+    let technologyService = new TechnologyService();
     technologyService.getByCvId(cvId).then((result) => {
       setTechnologies(result.data.data);
     });
-  });
+  },[cvId]);
 
   let technologyAddSchema = Yup.object().shape({
     name: Yup.string()
