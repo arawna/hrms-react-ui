@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CvService from "../services/CvService";
 import { Card, Image, Table, Header, Button, Icon } from "semantic-ui-react";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
+import { useSelector } from "react-redux";
+import UptadeGithub from "./popups/cvUpdate/UptadeGithub";
 
 export default function CvDetail() {
+
+  const {authItem} = useSelector(state => state.auth)
+
   let { id } = useParams();
 
   const [cv, setCv] = useState({});
@@ -13,7 +20,14 @@ export default function CvDetail() {
     cvService.getByCandidateId(id).then((result) => setCv(result.data.data));
   }, [id]);
 
-
+  let myProfile = false;
+  if(authItem[0].loggedIn === false){
+    myProfile=false
+  }else if(authItem[0].loggedIn === true){
+    myProfile = parseInt(authItem[0].user.id) === parseInt(id);
+  }
+  console.log(authItem[0])
+  
   return (
     <div>
       <Card.Group>
@@ -94,6 +108,9 @@ export default function CvDetail() {
                               <Icon name="github" /> Github
                             </Button>
                           </a>
+                          {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
+                            <UptadeGithub/>
+                          </Popup>}
                         </Header.Content>
                       </Header>
                     </Table.Cell>
@@ -113,6 +130,9 @@ export default function CvDetail() {
                               <Icon name="linkedin" /> LinkedIn
                             </Button>
                           </a>
+                          {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
+                            <span> Modal content </span>
+                          </Popup>}
                         </Header.Content>
                       </Header>
                     </Table.Cell>
@@ -126,7 +146,14 @@ export default function CvDetail() {
         </Card>
       </Card.Group>
       <Card fluid color={"black"}>
-        <Card.Content header="Biyografi" />
+        <Card.Content>
+          <Card.Header>
+            Biyografi 
+            {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
+                            <span> Modal content </span>
+                          </Popup>}
+          </Card.Header>
+        </Card.Content>
         <Card.Content description={cv.biography} />
       </Card>
 

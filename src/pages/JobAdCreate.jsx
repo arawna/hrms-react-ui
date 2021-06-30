@@ -8,8 +8,12 @@ import WorkTimeService from "../services/WorkTimeService";
 import WorkPlaceService from "../services/WorkPlaceService";
 import JobAdService from "../services/JobAdService";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function JobAdCreate() {
+
+  const {authItem} = useSelector(state => state.auth)
+
   let jobAdService = new JobAdService();
   const JobAdvertAddSchema = Yup.object().shape({
     lastDate: Yup.date().nullable().required("Bu alanın doldurulması zorunludur"),
@@ -39,7 +43,7 @@ export default function JobAdCreate() {
     },
     validationSchema: JobAdvertAddSchema,
     onSubmit: (values) => {
-      values.employerId = 4;
+      values.employerId = authItem[0].user.id;
       jobAdService.add(values).then((result) => console.log(result.data.data));
       alert("İş ilanı eklendi personelin onayı ardından listelenecektir");
       history.push("/jobads");
