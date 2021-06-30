@@ -5,9 +5,7 @@ import {
   Card,
   Grid,
   Form,
-  Header,
   Button,
-  Icon,
   Message,
 } from "semantic-ui-react";
 import { useState } from "react";
@@ -52,6 +50,8 @@ export default function EmployerUpdate() {
           })
       }
   })
+
+  employer.waitingUpdate=true;
 
   return (
     <div>

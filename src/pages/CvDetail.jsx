@@ -51,9 +51,6 @@ export default function CvDetail() {
 
   return (
     <div>
-      {
-        console.log(cv)
-      }
       <Card.Group>
         <Card fluid color={"black"}>
           <Card.Content>
@@ -133,7 +130,7 @@ export default function CvDetail() {
                             </Button>
                           </a>
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
-                            <UptadeGithub/>
+                            <UptadeGithub cvId={cv.id} />
                           </Popup>}
                           {myProfile && <Button color="red" onClick={() => handleGithubDelete(id)}>
                               <Icon name="x"/>
@@ -158,7 +155,7 @@ export default function CvDetail() {
                             </Button>
                           </a>
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
-                            <UpdateLinkedin/>
+                            <UpdateLinkedin cvId={cv.id} />
                           </Popup>}
                           {myProfile && <Button color="red" onClick={() => handleLinkedinDelete(id)}>
                               <Icon name="x"/>
@@ -180,7 +177,7 @@ export default function CvDetail() {
           <Card.Header>
             Biyografi 
             {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateBiography/>
+                            <UpdateBiography cvId={cv.id}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -192,7 +189,7 @@ export default function CvDetail() {
           <Card.Header>
           Okuduğu Okullar
           {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateSchools cvId={id}/>
+                            <UpdateSchools cvId={cv.id}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -224,7 +221,7 @@ export default function CvDetail() {
           <Card.Header>
             Yabancı Diller
             {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateLanguage cvId={id}/>
+                            <UpdateLanguage cvId={cv.id}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -252,7 +249,7 @@ export default function CvDetail() {
           <Card.Header>
           Yazılım Teknolojileri
           {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateTechnology cvId={id}/>
+                            <UpdateTechnology cvId={cv.id}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>

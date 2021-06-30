@@ -1,23 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import SchoolService from "../../../services/SchoolService";
 import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
 export default function UpdateSchools({cvId}) {
-  const { authItem } = useSelector((state) => state.auth);
 
   const [schools, setSchools] = useState([]);
 
   let schoolService = new SchoolService();
   useEffect(() => {    
     let schoolService = new SchoolService();
-    schoolService.getByCvId(authItem[0].user.id).then((result) => {
+    schoolService.getByCvId(cvId).then((result) => {
       setSchools(result.data.data);
     });
-  },[authItem]);
+  },[cvId]);
 
   let schoolAddSchema = Yup.object().shape({
     department: Yup.string().required("Bu alan zorunlu").min(2,"Minimum 2 karakter uzunlugunda olmalıdır"),

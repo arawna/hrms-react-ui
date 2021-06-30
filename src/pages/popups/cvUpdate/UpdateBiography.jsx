@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { Button, Form } from "semantic-ui-react";
 
-export default function UpdateBiography() {
+export default function UpdateBiography({cvId}) {
 
     let cvService = new CvService();
     const updateBiographySchema = Yup.object().shape({
@@ -23,7 +23,7 @@ export default function UpdateBiography() {
         },
         validationSchema: updateBiographySchema,
         onSubmit:(values) =>{
-            cvService.updateBiography(authItem[0].user.id,values.biography).then((result) =>{
+            cvService.updateBiography(cvId,values.biography).then((result) =>{
                 alert(result.data.message)
                 history.push(`/cvs/${authItem[0].user.id}`)
             }).catch((result) => {

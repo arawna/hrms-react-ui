@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { Button, Form } from "semantic-ui-react";
 
-export default function UptadeGithub() {
+export default function UptadeGithub({cvId}) {
 
     let cvService = new CvService();
     const updateGithubSchema = Yup.object().shape({
@@ -23,7 +23,7 @@ export default function UptadeGithub() {
         },
         validationSchema: updateGithubSchema,
         onSubmit:(values) =>{
-            cvService.updateGithub(authItem[0].user.id,values.github).then((result) =>{
+            cvService.updateGithub(cvId,values.github).then((result) =>{
                 alert(result.data.message)
                 history.push(`/cvs/${authItem[0].user.id}`)
             }).catch((result) => {
