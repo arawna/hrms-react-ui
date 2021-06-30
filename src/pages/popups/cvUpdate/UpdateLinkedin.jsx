@@ -6,11 +6,11 @@ import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { Button, Form } from "semantic-ui-react";
 
-export default function UptadeGithub() {
+export default function UpdateLinkedin() {
 
     let cvService = new CvService();
     const updateGithubSchema = Yup.object().shape({
-        github: Yup.string().required("Zorunlu")
+        linkedin: Yup.string().required("Zorunlu")
     })
 
     const {authItem} = useSelector(state => state.auth)
@@ -19,11 +19,11 @@ export default function UptadeGithub() {
 
     const formik = useFormik({
         initialValues:{
-            github:""
+            linkedin:""
         },
         validationSchema: updateGithubSchema,
         onSubmit:(values) =>{
-            cvService.updateGithub(authItem[0].user.id,values.github).then((result) =>{
+            cvService.updateLinkedin(authItem[0].user.id,values.linkedin).then((result) =>{
                 alert(result.data.message)
                 history.push(`/cvs/${authItem[0].user.id}`)
             }).catch((result) => {
@@ -35,21 +35,21 @@ export default function UptadeGithub() {
     return (
         <div>
             <Form size="large" onSubmit={formik.handleSubmit}>
-                <label><b>GitHub Link</b></label>
+                <label><b>Linkedin Link</b></label>
                 <div style={{marginTop :"1em" ,marginBottom:"1em"}}>
                 <Form.Input
                     fluid
-                    placeholder="Github Link"
+                    placeholder="Linkedin Link"
                     type="text"
-                    value={formik.values.github}
-                    name="github"
+                    value={formik.values.linkedin}
+                    name="linkedin"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
                 {
-                formik.errors.github && formik.touched.github && (
+                formik.errors.linkedin && formik.touched.linkedin && (
                   <div className={"ui pointing red basic label"}>
-                    {formik.errors.github}
+                    {formik.errors.linkedin}
                   </div>
                 )
               }

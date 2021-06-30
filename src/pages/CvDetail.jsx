@@ -6,6 +6,11 @@ import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { useSelector } from "react-redux";
 import UptadeGithub from "./popups/cvUpdate/UptadeGithub";
+import UpdateLinkedin from "./popups/cvUpdate/UpdateLinkedin";
+import UpdateBiography from "./popups/cvUpdate/UpdateBiography";
+import UpdateSchools from "./popups/cvUpdate/UpdateSchools";
+import UpdateLanguage from "./popups/cvUpdate/UpdateLanguage";
+import UpdateTechnology from "./popups/cvUpdate/UpdateTechnology";
 
 export default function CvDetail() {
 
@@ -15,8 +20,9 @@ export default function CvDetail() {
 
   const [cv, setCv] = useState({});
 
-  useEffect(() => {
-    let cvService = new CvService();
+  let cvService = new CvService();
+  useEffect(() => { 
+    let cvService = new CvService();   
     cvService.getByCandidateId(id).then((result) => setCv(result.data.data));
   }, [id]);
 
@@ -26,10 +32,28 @@ export default function CvDetail() {
   }else if(authItem[0].loggedIn === true){
     myProfile = parseInt(authItem[0].user.id) === parseInt(id);
   }
-  console.log(authItem[0])
-  
+
+  const handleGithubDelete = (cvId) => {
+    cvService.deleteGithub(cvId).then((result) => {
+      alert(result.data.message)
+    }).catch((result) => {
+      alert(result.response.data.message)
+    })
+  }
+
+  const handleLinkedinDelete = (cvId) => {
+    cvService.deleteLinkedin(cvId).then((result) => {
+      alert(result.data.message)
+    }).catch((result) => {
+      alert(result.response.data.message)
+    })
+  }
+
   return (
     <div>
+      {
+        console.log(cv)
+      }
       <Card.Group>
         <Card fluid color={"black"}>
           <Card.Content>
@@ -111,6 +135,9 @@ export default function CvDetail() {
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
                             <UptadeGithub/>
                           </Popup>}
+                          {myProfile && <Button color="red" onClick={() => handleGithubDelete(id)}>
+                              <Icon name="x"/>
+                            </Button>}
                         </Header.Content>
                       </Header>
                     </Table.Cell>
@@ -131,8 +158,11 @@ export default function CvDetail() {
                             </Button>
                           </a>
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
-                            <span> Modal content </span>
+                            <UpdateLinkedin/>
                           </Popup>}
+                          {myProfile && <Button color="red" onClick={() => handleLinkedinDelete(id)}>
+                              <Icon name="x"/>
+                            </Button>}
                         </Header.Content>
                       </Header>
                     </Table.Cell>
@@ -150,7 +180,7 @@ export default function CvDetail() {
           <Card.Header>
             Biyografi 
             {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <span> Modal content </span>
+                            <UpdateBiography/>
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -158,7 +188,14 @@ export default function CvDetail() {
       </Card>
 
       <Card fluid color={"black"}>
-        <Card.Content header="Okuduğu Okullar" />
+        <Card.Content>
+          <Card.Header>
+          Okuduğu Okullar
+          {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
+                            <UpdateSchools cvId={id}/>
+                          </Popup>}
+          </Card.Header>
+        </Card.Content>
         <Table celled color={"black"}>
           <Table.Header>
             <Table.Row>
@@ -183,7 +220,14 @@ export default function CvDetail() {
       </Card>
 
       <Card fluid color={"black"}>
-        <Card.Content header="Yabancı Diller" />
+        <Card.Content>
+          <Card.Header>
+            Yabancı Diller
+            {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
+                            <UpdateLanguage cvId={id}/>
+                          </Popup>}
+          </Card.Header>
+        </Card.Content>
         <Table celled color={"black"}>
           <Table.Header>
             <Table.Row>
@@ -204,7 +248,14 @@ export default function CvDetail() {
       </Card>
 
       <Card fluid color={"black"}>
-        <Card.Content header="Yazılım Teknolojileri" />
+        <Card.Content>
+          <Card.Header>
+          Yazılım Teknolojileri
+          {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
+                            <UpdateTechnology cvId={id}/>
+                          </Popup>}
+          </Card.Header>
+        </Card.Content>
         <Table celled color={"black"}>
           <Table.Header>
             <Table.Row>

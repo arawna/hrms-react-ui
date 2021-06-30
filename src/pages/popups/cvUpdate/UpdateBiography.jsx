@@ -6,11 +6,11 @@ import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { Button, Form } from "semantic-ui-react";
 
-export default function UptadeGithub() {
+export default function UpdateBiography() {
 
     let cvService = new CvService();
-    const updateGithubSchema = Yup.object().shape({
-        github: Yup.string().required("Zorunlu")
+    const updateBiographySchema = Yup.object().shape({
+        biography: Yup.string().required("Zorunlu")
     })
 
     const {authItem} = useSelector(state => state.auth)
@@ -19,11 +19,11 @@ export default function UptadeGithub() {
 
     const formik = useFormik({
         initialValues:{
-            github:""
+            biography:""
         },
-        validationSchema: updateGithubSchema,
+        validationSchema: updateBiographySchema,
         onSubmit:(values) =>{
-            cvService.updateGithub(authItem[0].user.id,values.github).then((result) =>{
+            cvService.updateBiography(authItem[0].user.id,values.biography).then((result) =>{
                 alert(result.data.message)
                 history.push(`/cvs/${authItem[0].user.id}`)
             }).catch((result) => {
@@ -35,21 +35,21 @@ export default function UptadeGithub() {
     return (
         <div>
             <Form size="large" onSubmit={formik.handleSubmit}>
-                <label><b>GitHub Link</b></label>
+                <label><b>Biyografi</b></label>
                 <div style={{marginTop :"1em" ,marginBottom:"1em"}}>
-                <Form.Input
-                    fluid
-                    placeholder="Github Link"
+                <Form.TextArea
+                    placeholder="Biyografi..."
                     type="text"
-                    value={formik.values.github}
-                    name="github"
+                    value={formik.values.biography}
+                    name="biography"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    style={{ minHeight: 200 }}
                 />
                 {
-                formik.errors.github && formik.touched.github && (
+                formik.errors.biography && formik.touched.biography && (
                   <div className={"ui pointing red basic label"}>
-                    {formik.errors.github}
+                    {formik.errors.biography}
                   </div>
                 )
               }
