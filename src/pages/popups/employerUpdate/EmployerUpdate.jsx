@@ -51,8 +51,6 @@ export default function EmployerUpdate() {
       }
   })
 
-  employer.waitingUpdate=true;
-
   return (
     <div>
         {/* {(formik.values.companyName=employer.companyName)} */}

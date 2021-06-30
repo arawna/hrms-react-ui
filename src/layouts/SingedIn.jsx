@@ -25,7 +25,7 @@ export default function SingedIn() {
                 <Dropdown pointing="top right" text={authItem[0].user.name}>
                     <Dropdown.Menu>
                         {authItem[0].user.userType===1 &&<Dropdown.Item as={Link} to={`/cvs/${authItem[0].user.id}`}><Icon name='cloud upload' />Cv ni Güncelle</Dropdown.Item>}
-                        {authItem[0].user.userType===2 &&<Dropdown.Item><Popup trigger={<p><i class="cloud upload icon"></i>Şirket bilgilerini güncelle</p>} modal><EmployerUpdate/></Popup></Dropdown.Item>}
+                        {authItem[0].user.userType===2 &&<Dropdown.Item><Popup trigger={<p><i className="cloud upload icon"></i>Şirket bilgilerini güncelle</p>} modal><EmployerUpdate/></Popup></Dropdown.Item>}
                         <Dropdown.Item onClick={()=>handleLogout(authItem[0].user)}><Icon name='sign-out' /> Çıkış yap</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
