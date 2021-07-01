@@ -8,5 +8,7 @@ export default class CandidateService{
         return axios.post("https://kodlamaio-hrms.herokuapp.com/api/candidates/add",values)
     }
 
-    
+    getMailVerifyedCandidates(){
+        return axios.get("https://kodlamaio-hrms.herokuapp.com/api/candidates/getMailVerifyTrue")
+    }
 }

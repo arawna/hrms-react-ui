@@ -9,7 +9,7 @@ export default function Candidates() {
   useEffect(() => {
     let candidateService = new CandidateService();
     candidateService
-      .getCandidates()
+      .getMailVerifyedCandidates()
       .then((result) => setCandidates(result.data.data));
   }, []);
 
