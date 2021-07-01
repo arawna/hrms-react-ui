@@ -19,7 +19,7 @@ export default function CvDetail() {
 
   let { id } = useParams();
 
-  const [cv, setCv] = useState({});
+  let [cv, setCv] = useState({});
 
   let cvService = new CvService();
   useEffect(() => { 
@@ -37,6 +37,7 @@ export default function CvDetail() {
   const handleGithubDelete = (cvId) => {
     cvService.deleteGithub(cvId).then((result) => {
       alert(result.data.message)
+      updateCvValues();
     }).catch((result) => {
       alert(result.response.data.message)
     })
@@ -45,8 +46,15 @@ export default function CvDetail() {
   const handleLinkedinDelete = (cvId) => {
     cvService.deleteLinkedin(cvId).then((result) => {
       alert(result.data.message)
+      updateCvValues();
     }).catch((result) => {
       alert(result.response.data.message)
+    })
+  }
+
+  const updateCvValues = () => {
+    cvService.getByCandidateId(id).then((result) => {
+      setCv(result.data.data)
     })
   }
 
@@ -131,7 +139,7 @@ export default function CvDetail() {
                             </Button>
                           </a>
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
-                            <UptadeGithub cvId={cv.id} />
+                            <UptadeGithub cvId={cv.id} updateCvValues={updateCvValues} />
                           </Popup>}
                           {myProfile && <Button color="red" onClick={() => handleGithubDelete(id)}>
                               <Icon name="x"/>
@@ -156,7 +164,7 @@ export default function CvDetail() {
                             </Button>
                           </a>
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
-                            <UpdateLinkedin cvId={cv.id} />
+                            <UpdateLinkedin cvId={cv.id} updateCvValues={updateCvValues} />
                           </Popup>}
                           {myProfile && <Button color="red" onClick={() => handleLinkedinDelete(id)}>
                               <Icon name="x"/>
@@ -178,7 +186,7 @@ export default function CvDetail() {
           <Card.Header>
             Biyografi 
             {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateBiography cvId={cv.id}/>
+                            <UpdateBiography cvId={cv.id} updateCvValues={updateCvValues}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -190,7 +198,7 @@ export default function CvDetail() {
           <Card.Header>
           Okuduğu Okullar
           {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateSchools cvId={cv.id}/>
+                            <UpdateSchools cvId={cv.id} updateCvValues={updateCvValues}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -221,7 +229,7 @@ export default function CvDetail() {
           <Card.Header>
             Tecrübeler
             {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateExperiance cvId={cv.id}/>
+                            <UpdateExperiance cvId={cv.id} updateCvValues={updateCvValues} />
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -252,7 +260,7 @@ export default function CvDetail() {
           <Card.Header>
             Yabancı Diller
             {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateLanguage cvId={cv.id}/>
+                            <UpdateLanguage cvId={cv.id} updateCvValues={updateCvValues}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>
@@ -280,7 +288,7 @@ export default function CvDetail() {
           <Card.Header>
           Yazılım Teknolojileri
           {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateTechnology cvId={cv.id}/>
+                            <UpdateTechnology cvId={cv.id} updateCvValues={updateCvValues} />
                           </Popup>}
           </Card.Header>
         </Card.Content>

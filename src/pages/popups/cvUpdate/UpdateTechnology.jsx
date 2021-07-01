@@ -6,8 +6,8 @@ import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-export default function UpdateTechnology({ cvId }) {
-  const [technologies, setTechnologies] = useState([]);
+export default function UpdateTechnology({ cvId, updateCvValues }) {
+  let [technologies, setTechnologies] = useState([]);
 
   let technologyService = new TechnologyService();
   useEffect(() => {
@@ -34,6 +34,10 @@ export default function UpdateTechnology({ cvId }) {
         .addScholl(values)
         .then((result) => {
           alert(result.data.message);
+          technologyService.getByCvId(cvId).then((result) => {
+            setTechnologies(result.data.data)
+          })
+          updateCvValues();
         })
         .catch((result) => {
           alert(result.response.data.message);
@@ -44,6 +48,10 @@ export default function UpdateTechnology({ cvId }) {
   const handleDeleteTechnology = (technologyId) => {
       technologyService.deleteSchool(technologyId).then((result) => {
           alert(result.data.message)
+          technologyService.getByCvId(cvId).then((result) => {
+            setTechnologies(result.data.data)
+          })
+          updateCvValues();
       }).catch((result) => {
           alert(result.response.message)
       })

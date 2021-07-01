@@ -5,9 +5,9 @@ import { Card, Table, Button, Icon, Form, Grid, Dropdown } from "semantic-ui-rea
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-export default function UpdateLanguage({ cvId }) {
+export default function UpdateLanguage({ cvId, updateCvValues }) {
 
-  const [languages, setLanguages] = useState([]);
+  let [languages, setLanguages] = useState([]);
 
   let languageService = new LanguageService();
 
@@ -40,6 +40,10 @@ export default function UpdateLanguage({ cvId }) {
         .addLanguage(values)
         .then((result) => {
           alert(result.data.message);
+          languageService.getByCvId(cvId).then((result) => {
+            setLanguages(result.data.data)
+          })
+          updateCvValues();
         })
         .catch((result) => {
           alert(result.response.data.message);
@@ -61,6 +65,10 @@ export default function UpdateLanguage({ cvId }) {
   const handleDeleteLanguage = (languageId) => {
       languageService.deleteLanguage(languageId).then((result) => {
           alert(result.data.message)
+          languageService.getByCvId(cvId).then((result) => {
+            setLanguages(result.data.data)
+          })
+          updateCvValues();
       }).catch((result) => {
           alert(result.response.data.message)
       })

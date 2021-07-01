@@ -1,21 +1,15 @@
 import React from 'react'
 import CvService from '../../../services/CvService'
 import * as Yup from "yup";
-import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useSelector } from 'react-redux';
 import { Button, Form } from "semantic-ui-react";
 
-export default function UpdateLinkedin({cvId}) {
+export default function UpdateLinkedin({cvId,updateCvValues}) {
 
     let cvService = new CvService();
     const updateGithubSchema = Yup.object().shape({
         linkedin: Yup.string().required("Zorunlu")
     })
-
-    const {authItem} = useSelector(state => state.auth)
-
-    const history = useHistory();
 
     const formik = useFormik({
         initialValues:{
@@ -25,7 +19,7 @@ export default function UpdateLinkedin({cvId}) {
         onSubmit:(values) =>{
             cvService.updateLinkedin(cvId,values.linkedin).then((result) =>{
                 alert(result.data.message)
-                history.push(`/cvs/${authItem[0].user.id}`)
+                updateCvValues();
             }).catch((result) => {
                 alert(result.response.data.message)
             })

@@ -5,9 +5,9 @@ import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-export default function UpdateSchools({cvId}) {
+export default function UpdateSchools({cvId,updateCvValues}) {
 
-  const [schools, setSchools] = useState([]);
+  let [schools, setSchools] = useState([]);
 
   let schoolService = new SchoolService();
   useEffect(() => {    
@@ -36,6 +36,10 @@ export default function UpdateSchools({cvId}) {
       values.cvId=cvId;
       schoolService.addScholl(values).then((result) => {
         alert(result.data.message)
+        schoolService.getByCvId(cvId).then((result) => {
+          setSchools(result.data.data);
+        })
+        updateCvValues();
       }).catch((result) => {
         alert(result.response.data.message)
       })
@@ -45,6 +49,10 @@ export default function UpdateSchools({cvId}) {
   const handleDeleteScholl = (schoolId) => {
     schoolService.deleteSchool(schoolId).then((result) =>{
       alert(result.data.message);
+      schoolService.getByCvId(cvId).then((result) => {
+        setSchools(result.data.data)
+      })
+      updateCvValues();
     }).catch((result) => {
       alert(result.response.data.message)
     })

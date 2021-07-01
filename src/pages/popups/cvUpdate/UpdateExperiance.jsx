@@ -6,9 +6,9 @@ import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 
-export default function UpdateExperiance({cvId}) {
+export default function UpdateExperiance({cvId,updateCvValues}) {
 
-    const [experiances, setExperiances] = useState([])
+    let [experiances, setExperiances] = useState([])
 
     let experianceService = new ExperianceService();
     useEffect(() => {
@@ -37,6 +37,10 @@ export default function UpdateExperiance({cvId}) {
             values.cvId=cvId;
             experianceService.add(values).then((result) => {
                 alert(result.data.message)
+                experianceService.getByCvId(cvId).then((result) => {
+                    setExperiances(result.data.data)
+                })
+                updateCvValues();
             }).catch((result) => {
                 alert(result.response.data.message)
             })
@@ -46,6 +50,10 @@ export default function UpdateExperiance({cvId}) {
     const handleDeleteExperiance = (experianceId) => {
         experianceService.delete(experianceId).then((result) => {
             alert(result.data.message);
+            experianceService.getByCvId(cvId).then((result) => {
+                setExperiances(result.data.data)
+            })
+            updateCvValues();
         }).catch((result) => {
             alert(result.response.data.message)
         })
