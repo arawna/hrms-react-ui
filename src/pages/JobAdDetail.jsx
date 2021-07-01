@@ -3,9 +3,13 @@ import { useParams } from "react-router";
 import JobAdService from "../services/JobAdService";
 import { Header, Icon, Table, Button, Grid, Card } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import FavoriteService from "../services/FavoriteService";
 
 export default function JobAdDetail() {
   let { id } = useParams();
+
+  const {authItem} = useSelector(state => state.auth)
 
   const [jobAd, setJobAd] = useState({});
 
@@ -13,6 +17,15 @@ export default function JobAdDetail() {
     let jobAdService = new JobAdService();
     jobAdService.getByJobAdId(id).then((result) => setJobAd(result.data.data));
   }, [id]);
+
+  const handleAddFavorites = (jobAdId) => {
+    let favoriteService = new FavoriteService();
+    favoriteService.addFavorite(authItem[0].user.id,jobAdId).then((result) => {
+      alert(result.data.message)
+    }).catch((result) => {
+      alert(result.response.data.message)
+    })
+  }
 
   return (
     <div>
@@ -102,6 +115,11 @@ export default function JobAdDetail() {
                 </Table.Row>
               </Table.Body>
             </Table>
+            {authItem[0].loggedIn && authItem[0].user.userType===1 && 
+              <Button fluid color={"red"} onClick={() => handleAddFavorites(jobAd.id)}>
+                <Icon name="heart" />İlanı Favorilerine Ekle
+              </Button>
+            }
           </Grid.Column>
           <Grid.Column width={10}>
             <Table celled fixed singleLine color={"black"}>
