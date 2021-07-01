@@ -9,10 +9,14 @@ import {
 } from "semantic-ui-react";
 import JobAdService from '../services/JobAdService';
 import JobAdFilter from '../layouts/filters/JobAdFilter';
+import { useSelector } from 'react-redux';
+import FavoriteService from '../services/FavoriteService';
 
 export default function JobAds() {
 
   const [jobAds, setJobAds] = useState([]);
+
+  const {authItem} = useSelector(state => state.auth)
 
   const [activePage, setActivePage] = useState(1);
   const [filterOption, setFilterOption] = useState({});
@@ -49,6 +53,15 @@ export default function JobAds() {
     setActivePage(activePage);
   }
 
+  let favoriteService = new FavoriteService();
+  const handleAddFavorite = (jobAdId) => {
+    favoriteService.addFavorite(authItem[0].user.id,jobAdId).then((result) => {
+      alert(result.data.message)
+    }).catch((result) => {
+      alert(result.response.data.message)
+    })
+  }
+
 
 
   return (
@@ -66,12 +79,14 @@ export default function JobAds() {
             <Table.HeaderCell>Şirket Adı</Table.HeaderCell>
             <Table.HeaderCell>İş Pozisyonu</Table.HeaderCell>
             <Table.HeaderCell>Şehir</Table.HeaderCell>
-            <Table.HeaderCell>Minimum Maaş</Table.HeaderCell>
-            <Table.HeaderCell>Maximum Maaş</Table.HeaderCell>
+            <Table.HeaderCell>Maaş Aralığı</Table.HeaderCell>
             <Table.HeaderCell>Çalışma Zamanı</Table.HeaderCell>
             <Table.HeaderCell>Çalışma Yeri</Table.HeaderCell>
             <Table.HeaderCell>Son Tarih</Table.HeaderCell>
             <Table.HeaderCell>Detaylar</Table.HeaderCell>
+            {authItem[0].loggedIn && authItem[0].user.userType===1 &&
+              <Table.HeaderCell>Favorilere Ekle</Table.HeaderCell>
+            }
           </Table.Row>
         </Table.Header>
 
@@ -81,8 +96,7 @@ export default function JobAds() {
               <Table.Cell>{jobAd.employer.companyName}</Table.Cell>
               <Table.Cell>{jobAd.jobPosition.name}</Table.Cell>
               <Table.Cell>{jobAd.city.name}</Table.Cell>
-              <Table.Cell>{jobAd.minSalary} ₺</Table.Cell>
-              <Table.Cell>{jobAd.maxSalary} ₺</Table.Cell>
+              <Table.Cell>{jobAd.minSalary}₺ - {jobAd.maxSalary}₺</Table.Cell>
               <Table.Cell>{jobAd.workTime.name}</Table.Cell>
               <Table.Cell>{jobAd.workPlace.name}</Table.Cell>
               <Table.Cell>
@@ -102,6 +116,15 @@ export default function JobAds() {
                     labelPosition="right"
                   />
               </Table.Cell>
+              {authItem[0].loggedIn && authItem[0].user.userType===1 &&
+                <Table.Cell>
+                <Button
+                    icon="heart"
+                    color="red"
+                    onClick = {() => handleAddFavorite(jobAd.id)}
+                  />
+                </Table.Cell>
+              }
             </Table.Row>
           ))}
         </Table.Body>

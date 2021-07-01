@@ -15,6 +15,7 @@ import Register from '../pages/Register';
 import CvDetail from '../pages/CvDetail';
 import JobAdCreate from '../pages/JobAdCreate';
 import RegisterEmployer from '../pages/RegisterEmployer';
+import JobAdFavorites from '../pages/JobAdFavorites';
 
 export default function Dashboard() {
     return (
@@ -38,6 +39,7 @@ export default function Dashboard() {
                         <Route exact path="/jobads" component={JobAds}/>
                         <Route exact path="/jobAdCreate" component={JobAdCreate}/>
                         <Route exact path="/jobads/:id" component={JobAdDetail}/>
+                        <Route exact path="/jobAdFavorites" component={JobAdFavorites}/>
                     </Grid.Column>
                 </Grid>
             </Container>

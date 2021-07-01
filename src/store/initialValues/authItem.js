@@ -1,1 +1,1 @@
-export const authItem=[{loggedIn:false}]
+export const authItem=[{loggedIn:false, id:0, userType:0}]

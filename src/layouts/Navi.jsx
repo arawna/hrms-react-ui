@@ -24,6 +24,10 @@ export default function Navi() {
             {authItem[0].loggedIn && authItem[0].user.userType===2 &&  <Button primary as={Link} to={"/jobAdCreate"}>
               İlan Ekle
             </Button>}
+            {authItem[0].loggedIn && authItem[0].user.userType===1 &&  <Button color="red" as={Link} to={`/jobAdFavorites`}>
+              <Icon name='heart' />
+              Favori İlanlar
+            </Button>}
             
             {authItem[0].loggedIn?<SingedIn/>:<SingedOut/>}
           </Menu.Menu>
