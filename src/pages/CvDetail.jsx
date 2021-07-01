@@ -126,7 +126,7 @@ export default function CvDetail() {
                             target={"_blank"}
                             rel="noopener noreferrer"
                           >
-                            <Button secondary>
+                            <Button secondary disabled={!cv.github}>
                               <Icon name="github" /> Github
                             </Button>
                           </a>
@@ -151,7 +151,7 @@ export default function CvDetail() {
                             target={"_blank"}
                             rel="noopener noreferrer"
                           >
-                            <Button color="linkedin">
+                            <Button color="linkedin" disabled={!cv.linkedin}>
                               <Icon name="linkedin" /> LinkedIn
                             </Button>
                           </a>
