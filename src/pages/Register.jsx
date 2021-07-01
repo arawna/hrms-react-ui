@@ -42,7 +42,11 @@ export default function Register() {
     validationSchema: candidateRegisterSchema,
     onSubmit:(values) => {
       console.log(values)
-      candidateService.registerCandidate(values).then((result) => alert(result.message))
+      candidateService.registerCandidate(values).then((result) => alert(result.data.message))
+      .catch((result) => {
+        console.log(result)
+        alert(result.response.data.message)
+      })
       history.push("/login")
     }
   });

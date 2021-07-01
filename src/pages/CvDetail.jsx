@@ -11,6 +11,7 @@ import UpdateBiography from "./popups/cvUpdate/UpdateBiography";
 import UpdateSchools from "./popups/cvUpdate/UpdateSchools";
 import UpdateLanguage from "./popups/cvUpdate/UpdateLanguage";
 import UpdateTechnology from "./popups/cvUpdate/UpdateTechnology";
+import UpdateExperiance from "./popups/cvUpdate/UpdateExperiance";
 
 export default function CvDetail() {
 
@@ -209,11 +210,41 @@ export default function CvDetail() {
                 <Table.Cell>{school.name}</Table.Cell>
                 <Table.Cell>{school.department}</Table.Cell>
                 <Table.Cell>{school.startDate}</Table.Cell>
-                <Table.Cell>{school.endDate}</Table.Cell>
+                <Table.Cell>{school.endDate ? school.endDate:<p>Devam Ediyor</p>}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
         </Table>
+      </Card>
+      <Card fluid>
+        <Card.Content>
+          <Card.Header>
+            Tecrübeler
+            {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
+                            <UpdateExperiance cvId={cv.id}/>
+                          </Popup>}
+          </Card.Header>
+        </Card.Content>
+          <Table celled color={"black"}>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Şirket Adı</Table.HeaderCell>
+                <Table.HeaderCell>Pozisyon</Table.HeaderCell>
+                <Table.HeaderCell>Başalngıç Tarihi</Table.HeaderCell>
+                <Table.HeaderCell>Bitiş Tarihi</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+            {cv.experiances?.map((experiance) => (
+              <Table.Row key={experiance.id}>
+                <Table.Cell>{experiance.companyName}</Table.Cell>
+                <Table.Cell>{experiance.position}</Table.Cell>
+                <Table.Cell>{experiance.startDate}</Table.Cell>
+                <Table.Cell>{experiance.endDate ? experiance.endDate:<p>Devam Ediyor</p>}</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+          </Table>
       </Card>
 
       <Card fluid color={"black"}>

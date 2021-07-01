@@ -34,7 +34,7 @@ export default function Login() {
         handleLogin(result.data.data)
         history.push("/")
       }).catch((result) => {
-        //console.log(result.response.data)
+        alert(result.response.data.message)
       })
     }
   })
