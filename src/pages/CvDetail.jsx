@@ -12,6 +12,7 @@ import UpdateSchools from "./popups/cvUpdate/UpdateSchools";
 import UpdateLanguage from "./popups/cvUpdate/UpdateLanguage";
 import UpdateTechnology from "./popups/cvUpdate/UpdateTechnology";
 import UpdateExperiance from "./popups/cvUpdate/UpdateExperiance";
+import UpdateImage from "./popups/cvUpdate/UpdateImage";
 import { toast } from "react-toastify";
 
 export default function CvDetail() {
@@ -74,8 +75,11 @@ export default function CvDetail() {
                 key={image?.id}
               />
             ))}
+            {myProfile && <Popup trigger={<button className="ui button">Resim Yükle</button>} modal>
+                            <UpdateImage cvId={cv.id} updateCvValues={updateCvValues} />
+                          </Popup>}
 
-            <Card.Header>
+            <Card.Header style={{marginTop:"0.3em"}}>
               {cv.candidate?.firstName + " " + cv.candidate?.lastName}
             </Card.Header>
             <Card.Meta>
