@@ -16,6 +16,7 @@ import CvDetail from '../pages/CvDetail';
 import JobAdCreate from '../pages/JobAdCreate';
 import RegisterEmployer from '../pages/RegisterEmployer';
 import JobAdFavorites from '../pages/JobAdFavorites';
+import Footer from './Footer';
 
 export default function Dashboard() {
     return (
@@ -43,6 +44,7 @@ export default function Dashboard() {
                     </Grid.Column>
                 </Grid>
             </Container>
+            <Footer/>
         </div>
     )
 }
