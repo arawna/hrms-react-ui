@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../store/actions/authActions";
+import { toast } from "react-toastify";
 
 export default function Login() {
 
@@ -34,7 +35,7 @@ export default function Login() {
         handleLogin(result.data.data)
         history.push("/")
       }).catch((result) => {
-        alert(result.response.data.message)
+        toast.error(result.response.data.message)
       })
     }
   })

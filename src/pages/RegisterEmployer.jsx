@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
     Button,
     Form,
@@ -50,9 +51,12 @@ export default function RegisterEmployer() {
     },
     validationSchema: employerRegisterSchema,
     onSubmit:(values) => {
-      console.log(values)
-      employerService.registerEmployer(values).then((result) => alert(result.message))
-      history.push("/login")
+      employerService.registerEmployer(values).then((result) => {
+        toast.success(result.data.message)
+        history.push("/login")
+      }).catch((result) => {
+        toast.error(result.response.data.message)
+      })
     }
   });
 

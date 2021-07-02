@@ -11,6 +11,7 @@ import JobAdService from '../services/JobAdService';
 import JobAdFilter from '../layouts/filters/JobAdFilter';
 import { useSelector } from 'react-redux';
 import FavoriteService from '../services/FavoriteService';
+import { toast } from 'react-toastify';
 
 export default function JobAds() {
 
@@ -56,9 +57,9 @@ export default function JobAds() {
   let favoriteService = new FavoriteService();
   const handleAddFavorite = (jobAdId) => {
     favoriteService.addFavorite(authItem[0].user.id,jobAdId).then((result) => {
-      alert(result.data.message)
+      toast.success(result.data.message)
     }).catch((result) => {
-      alert(result.response.data.message)
+      toast.error(result.response.data.message)
     })
   }
 

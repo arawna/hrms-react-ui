@@ -5,6 +5,7 @@ import { Header, Icon, Table, Button, Grid, Card } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import FavoriteService from "../services/FavoriteService";
+import { toast } from "react-toastify";
 
 export default function JobAdDetail() {
   let { id } = useParams();
@@ -21,9 +22,9 @@ export default function JobAdDetail() {
   const handleAddFavorites = (jobAdId) => {
     let favoriteService = new FavoriteService();
     favoriteService.addFavorite(authItem[0].user.id,jobAdId).then((result) => {
-      alert(result.data.message)
+      toast.success(result.data.message)
     }).catch((result) => {
-      alert(result.response.data.message)
+      toast.error(result.response.data.message)
     })
   }
 

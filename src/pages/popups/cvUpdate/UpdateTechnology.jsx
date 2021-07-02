@@ -5,6 +5,7 @@ import TechnologyService from "../../../services/TechnologyService";
 import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 export default function UpdateTechnology({ cvId, updateCvValues }) {
   let [technologies, setTechnologies] = useState([]);
@@ -33,27 +34,27 @@ export default function UpdateTechnology({ cvId, updateCvValues }) {
       technologyService
         .addScholl(values)
         .then((result) => {
-          alert(result.data.message);
+          toast.success(result.data.message)
           technologyService.getByCvId(cvId).then((result) => {
             setTechnologies(result.data.data)
           })
           updateCvValues();
         })
         .catch((result) => {
-          alert(result.response.data.message);
+          toast.error(result.response.data.message)
         });
     },
   });
 
   const handleDeleteTechnology = (technologyId) => {
       technologyService.deleteSchool(technologyId).then((result) => {
-          alert(result.data.message)
+          toast.success(result.data.message)
           technologyService.getByCvId(cvId).then((result) => {
             setTechnologies(result.data.data)
           })
           updateCvValues();
       }).catch((result) => {
-          alert(result.response.message)
+          toast.error(result.response.data.message)
       })
   }
 

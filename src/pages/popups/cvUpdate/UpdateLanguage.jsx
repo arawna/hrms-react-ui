@@ -4,6 +4,7 @@ import LanguageService from "../../../services/LanguageService";
 import { Card, Table, Button, Icon, Form, Grid, Dropdown } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 export default function UpdateLanguage({ cvId, updateCvValues }) {
 
@@ -39,14 +40,14 @@ export default function UpdateLanguage({ cvId, updateCvValues }) {
       languageService
         .addLanguage(values)
         .then((result) => {
-          alert(result.data.message);
+          toast.success(result.data.message);
           languageService.getByCvId(cvId).then((result) => {
             setLanguages(result.data.data)
           })
           updateCvValues();
         })
         .catch((result) => {
-          alert(result.response.data.message);
+          toast.error(result.response.data.message)
         });
     },
   });
@@ -64,13 +65,13 @@ export default function UpdateLanguage({ cvId, updateCvValues }) {
 
   const handleDeleteLanguage = (languageId) => {
       languageService.deleteLanguage(languageId).then((result) => {
-          alert(result.data.message)
+          toast.success(result.data.message)
           languageService.getByCvId(cvId).then((result) => {
             setLanguages(result.data.data)
           })
           updateCvValues();
       }).catch((result) => {
-          alert(result.response.data.message)
+          toast.error(result.response.data.message)
       })
   }
 

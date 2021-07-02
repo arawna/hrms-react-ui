@@ -4,6 +4,7 @@ import SchoolService from "../../../services/SchoolService";
 import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 export default function UpdateSchools({cvId,updateCvValues}) {
 
@@ -35,26 +36,26 @@ export default function UpdateSchools({cvId,updateCvValues}) {
     onSubmit:(values)=>{
       values.cvId=cvId;
       schoolService.addScholl(values).then((result) => {
-        alert(result.data.message)
+        toast.success(result.data.message)
         schoolService.getByCvId(cvId).then((result) => {
           setSchools(result.data.data);
         })
         updateCvValues();
       }).catch((result) => {
-        alert(result.response.data.message)
+        toast.error(result.response.data.message)
       })
     }
   })
 
   const handleDeleteScholl = (schoolId) => {
     schoolService.deleteSchool(schoolId).then((result) =>{
-      alert(result.data.message);
+      toast.success(result.data.message);
       schoolService.getByCvId(cvId).then((result) => {
         setSchools(result.data.data)
       })
       updateCvValues();
     }).catch((result) => {
-      alert(result.response.data.message)
+      toast.error(result.response.data.message)
     })
   }
 

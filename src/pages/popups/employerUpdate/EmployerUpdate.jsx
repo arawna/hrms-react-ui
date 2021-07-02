@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 export default function EmployerUpdate() {
   let employerService = new EmployerService();
@@ -44,9 +45,9 @@ export default function EmployerUpdate() {
       onSubmit:(values) => {
           formik.values.employerId=authItem[0].user.id;
           employerService.update(values).then((result) => {
-              alert(result.data.message)
+              toast.success(result.data.message)
           }).catch((result) => {
-              alert(result.response.data.message)
+              toast.error(result.response.data.message)
           })
       }
   })

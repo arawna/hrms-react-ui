@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Card, Table, Button } from 'semantic-ui-react'
 import FavoriteService from '../services/FavoriteService';
 
@@ -23,9 +24,9 @@ export default function JobAdFavorites() {
     const handleRemoveFavorite = (favoriteId) => {
         favoriteService.removeFavorite(favoriteId).then((result) => {
             setFavoriteAds(favoriteAds.filter((favoriAd) => favoriAd.id !== favoriteId))
-            alert(result.data.message)
+            toast.success(result.data.message)
         }).catch((result) => {
-            alert(result.response.data.message)
+            toast.error(result.response.data.message)
         })
     }
 

@@ -3,6 +3,7 @@ import CvService from '../../../services/CvService'
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { Button, Form } from "semantic-ui-react";
+import { toast } from 'react-toastify';
 
 export default function UptadeGithub({cvId,updateCvValues}) {
 
@@ -18,10 +19,10 @@ export default function UptadeGithub({cvId,updateCvValues}) {
         validationSchema: updateGithubSchema,
         onSubmit:(values) =>{
             cvService.updateGithub(cvId,values.github).then((result) =>{
-                alert(result.data.message)
+                toast.success(result.data.message)
                 updateCvValues();
             }).catch((result) => {
-                alert(result.response.data.message)
+                toast.error(result.response.data.message)
             })
         }
     })

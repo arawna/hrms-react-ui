@@ -9,6 +9,7 @@ import WorkPlaceService from "../services/WorkPlaceService";
 import JobAdService from "../services/JobAdService";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function JobAdCreate() {
 
@@ -44,8 +45,11 @@ export default function JobAdCreate() {
     validationSchema: JobAdvertAddSchema,
     onSubmit: (values) => {
       values.employerId = authItem[0].user.id;
-      jobAdService.add(values).then((result) => console.log(result.data.data));
-      alert("İş ilanı eklendi personelin onayı ardından listelenecektir");
+      jobAdService.add(values).then((result) => {
+        toast.success(result.data.message)
+      }).catch((result) => {
+        toast.error(result.response.data.message)
+      })
       history.push("/jobads");
     },
   });

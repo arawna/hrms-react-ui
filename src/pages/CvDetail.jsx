@@ -12,6 +12,7 @@ import UpdateSchools from "./popups/cvUpdate/UpdateSchools";
 import UpdateLanguage from "./popups/cvUpdate/UpdateLanguage";
 import UpdateTechnology from "./popups/cvUpdate/UpdateTechnology";
 import UpdateExperiance from "./popups/cvUpdate/UpdateExperiance";
+import { toast } from "react-toastify";
 
 export default function CvDetail() {
 
@@ -36,19 +37,20 @@ export default function CvDetail() {
 
   const handleGithubDelete = (cvId) => {
     cvService.deleteGithub(cvId).then((result) => {
-      alert(result.data.message)
+      toast.success(result.data.message)
       updateCvValues();
     }).catch((result) => {
-      alert(result.response.data.message)
+      toast.error(result.response.data.message)
     })
   }
 
   const handleLinkedinDelete = (cvId) => {
     cvService.deleteLinkedin(cvId).then((result) => {
-      alert(result.data.message)
+      toast.success(result.data.message)
       updateCvValues();
     }).catch((result) => {
       alert(result.response.data.message)
+      toast.warning(result.response.data.message)
     })
   }
 

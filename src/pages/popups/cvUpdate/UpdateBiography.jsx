@@ -3,6 +3,7 @@ import CvService from '../../../services/CvService'
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { Button, Form } from "semantic-ui-react";
+import { toast } from 'react-toastify';
 
 export default function UpdateBiography({cvId,updateCvValues}) {
 
@@ -19,10 +20,10 @@ export default function UpdateBiography({cvId,updateCvValues}) {
         validationSchema: updateBiographySchema,
         onSubmit:(values) =>{
             cvService.updateBiography(cvId,values.biography).then((result) =>{
-                alert(result.data.message)
+                toast.success(result.data.message)
                 updateCvValues();
             }).catch((result) => {
-                alert(result.response.data.message)
+                toast.error(result.response.data.message)
             })
         }
     })

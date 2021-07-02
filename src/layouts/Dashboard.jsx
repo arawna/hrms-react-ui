@@ -17,10 +17,12 @@ import JobAdCreate from '../pages/JobAdCreate';
 import RegisterEmployer from '../pages/RegisterEmployer';
 import JobAdFavorites from '../pages/JobAdFavorites';
 import Footer from './Footer';
+import { ToastContainer } from "react-toastify";
 
 export default function Dashboard() {
     return (
         <div>
+            <ToastContainer position="bottom-right"/>
             <Navi />
             <Container className="main">                
                 <Grid stackable>

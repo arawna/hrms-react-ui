@@ -12,6 +12,7 @@ import {
 } from "semantic-ui-react";
 import CandidateService from "../services/CandidateService";
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 
 export default function Register() {
 
@@ -41,13 +42,13 @@ export default function Register() {
     },
     validationSchema: candidateRegisterSchema,
     onSubmit:(values) => {
-      console.log(values)
-      candidateService.registerCandidate(values).then((result) => alert(result.data.message))
-      .catch((result) => {
-        console.log(result)
-        alert(result.response.data.message)
+      candidateService.registerCandidate(values).then((result) => {
+        toast.success(result.data.message)
+        history.push("/login")
       })
-      history.push("/login")
+      .catch((result) => {
+        toast.error(result.response.data.message)
+      })      
     }
   });
 
