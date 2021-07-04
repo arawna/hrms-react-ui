@@ -26,7 +26,7 @@ export default function authReducer(state=initialState,{type,payload}){
         case USER_LOGOUT:
             return{
                 ...state,
-                authItem:[{loggedIn:false, id:0, userType:0}]
+                authItem:[{loggedIn:false, user:{id:0, userType:0}}]
             };
     
         default:

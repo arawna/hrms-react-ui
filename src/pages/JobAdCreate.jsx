@@ -98,6 +98,15 @@ export default function JobAdCreate() {
 
   return (
     <div>
+      {authItem[0].user.userType !==2 &&
+        <div className="ui negative message">
+          <div className="header">
+            Bu sayfayı görüntülemeye yetkiniz yok
+          </div>
+          <p>Giriş yapmayı yada bir iş veren hesabı oluşturmayı deneyebilirsiniz</p>
+        </div>
+      }
+      {authItem[0].user.userType ===2 && 
       <Card fluid>
       <Card.Content header='İş ilanı Ekle' />
       <Card.Content>
@@ -300,7 +309,7 @@ export default function JobAdCreate() {
               />
       </Form>
       </Card.Content>
-      </Card>
+      </Card>}
     </div>
   );
 }
