@@ -5,7 +5,8 @@ import {
   Button,
   Header,
   Icon,
-  Pagination
+  Pagination,
+  Dropdown
 } from "semantic-ui-react";
 import JobAdService from '../services/JobAdService';
 import JobAdFilter from '../layouts/filters/JobAdFilter';
@@ -22,7 +23,7 @@ export default function JobAds() {
 
   let [activePage, setActivePage] = useState(1);
   let [filterOption, setFilterOption] = useState({});
-  let [pageSize] = useState(2);
+  let [pageSize, setPageSize] = useState(2);
   let [totalPageSize, setTotalPageSize] = useState(0);
 
   useEffect(() => {
@@ -74,6 +75,18 @@ export default function JobAds() {
     })
   }
 
+  const handlePaginationSizeChange = (value) => {
+    setPageSize(value);
+    console.log(pageSize)
+  }
+
+  const paginationOptions = [
+    { key:2, text: "2 İlan", value: 2 },
+    { key:10, text: "10 İlan", value: 10 },
+    { key:25, text: "25 İlan", value: 25 },
+    { key:50, text: "50 İlan", value: 50 },
+    { key:100, text: "100 İlan", value: 100 },
+  ];
 
   return (
     <div>
@@ -147,6 +160,19 @@ export default function JobAds() {
         activePage={activePage}
         onPageChange={handlePaginationChange}
         totalPages={Math.ceil(totalPageSize / pageSize)}
+      />
+
+      <Dropdown
+          onChange={(e, data) => {
+            setActivePage(1)
+            setPageSize(data.value);
+            handlePaginationSizeChange(data.value);
+          }}
+          selection
+          defaultValue={pageSize}
+          text={"Sayfalama - " + pageSize}
+          style={{ marginLeft: "2em" }}
+          options={paginationOptions}
       />
 
     </div>
