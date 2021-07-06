@@ -15,23 +15,32 @@ import { toast } from 'react-toastify';
 
 export default function JobAds() {
 
-  const [jobAds, setJobAds] = useState([]);
+  let [jobAds, setJobAds] = useState([]);
+  let [favorites, setFavorites] = useState([]);
 
   const {authItem} = useSelector(state => state.auth)
 
-  const [activePage, setActivePage] = useState(1);
-  const [filterOption, setFilterOption] = useState({});
-  const [pageSize] = useState(2);
-  const [totalPageSize, setTotalPageSize] = useState(0);
+  let [activePage, setActivePage] = useState(1);
+  let [filterOption, setFilterOption] = useState({});
+  let [pageSize] = useState(2);
+  let [totalPageSize, setTotalPageSize] = useState(0);
 
   useEffect(() => {
     let jobAdService = new JobAdService();
+    let favoriteService = new FavoriteService();
     jobAdService.getPageableAndFilterJobPostings(activePage, pageSize, filterOption)
     .then((result) => {
       setJobAds(result.data.data);
       setTotalPageSize(parseInt(result.data.message));
     });
-  }, [filterOption, activePage, pageSize]);
+    if(authItem[0].loggedIn===true && authItem[0].user.userType===1){
+      favoriteService.getByCandidateId(authItem[0].user.id).then((result) => {
+        setFavorites(result.data.data.map((favoriteAd) => (
+          favoriteAd.jobAd.id
+        )))
+      })
+    }
+  }, [filterOption, activePage, pageSize,authItem]);
 
   const handleFilterClick = (filterOption) => {
     if(filterOption.cityId.length === 0){
@@ -58,11 +67,12 @@ export default function JobAds() {
   const handleAddFavorite = (jobAdId) => {
     favoriteService.addFavorite(authItem[0].user.id,jobAdId).then((result) => {
       toast.success(result.data.message)
+      favorites.push(jobAdId)
+      setFavorites([...favorites])
     }).catch((result) => {
       toast.error(result.response.data.message)
     })
   }
-
 
 
   return (
@@ -120,8 +130,8 @@ export default function JobAds() {
               {authItem[0].loggedIn && authItem[0].user.userType===1 &&
                 <Table.Cell>
                 <Button
-                    icon="heart"
-                    color="red"
+                    icon={favorites.includes(jobAd.id)?"heart":"heart outline"}
+                    color={favorites.includes(jobAd.id)?"red":"green"}
                     onClick = {() => handleAddFavorite(jobAd.id)}
                   />
                 </Table.Cell>

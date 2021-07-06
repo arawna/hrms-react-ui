@@ -13,16 +13,27 @@ export default function JobAdDetail() {
   const {authItem} = useSelector(state => state.auth)
 
   const [jobAd, setJobAd] = useState({});
+  let [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     let jobAdService = new JobAdService();
+    let favoriteService = new FavoriteService();
     jobAdService.getByJobAdId(id).then((result) => setJobAd(result.data.data));
-  }, [id]);
+    if(authItem[0].loggedIn===true && authItem[0].user.userType===1){
+      favoriteService.getByCandidateId(authItem[0].user.id).then((result) => {
+        setFavorites(result.data.data.map((favoriteAd) => (
+          favoriteAd.jobAd.id
+        )))
+      })
+    }
+  }, [id,authItem]);
 
   const handleAddFavorites = (jobAdId) => {
     let favoriteService = new FavoriteService();
     favoriteService.addFavorite(authItem[0].user.id,jobAdId).then((result) => {
       toast.success(result.data.message)
+      favorites.push(jobAdId)
+      setFavorites([...favorites])
     }).catch((result) => {
       toast.error(result.response.data.message)
     })
@@ -117,8 +128,8 @@ export default function JobAdDetail() {
               </Table.Body>
             </Table>
             {authItem[0].loggedIn && authItem[0].user.userType===1 && 
-              <Button fluid color={"red"} onClick={() => handleAddFavorites(jobAd.id)}>
-                <Icon name="heart" />İlanı Favorilerine Ekle
+              <Button fluid color={favorites.includes(jobAd.id)?"red":"green"} onClick={() => handleAddFavorites(jobAd.id)}>
+                <Icon name={favorites.includes(jobAd.id)?"heart":"heart outline"} />{favorites.includes(jobAd.id)?"İlan Favorilerinizde":"İlanı Favorilerine Ekle"}
               </Button>
             }
           </Grid.Column>
