@@ -51,7 +51,7 @@ export default function CvDetail() {
       updateCvValues();
     }).catch((result) => {
       alert(result.response.data.message)
-      toast.warning(result.response.data.message)
+      toast.error(result.response.data.message)
     })
   }
 
@@ -147,7 +147,7 @@ export default function CvDetail() {
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
                             <UptadeGithub cvId={cv.id} updateCvValues={updateCvValues} />
                           </Popup>}
-                          {myProfile && <Button color="red" onClick={() => handleGithubDelete(id)}>
+                          {myProfile && <Button color="red" onClick={() => handleGithubDelete(cv.id)}>
                               <Icon name="x"/>
                             </Button>}
                         </Header.Content>
@@ -172,7 +172,7 @@ export default function CvDetail() {
                           {myProfile && <Popup trigger={<button className="ui button"> Güncelle </button>} modal>
                             <UpdateLinkedin cvId={cv.id} updateCvValues={updateCvValues} />
                           </Popup>}
-                          {myProfile && <Button color="red" onClick={() => handleLinkedinDelete(id)}>
+                          {myProfile && <Button color="red" onClick={() => handleLinkedinDelete(cv.id)}>
                               <Icon name="x"/>
                             </Button>}
                         </Header.Content>
