@@ -192,7 +192,7 @@ export default function CvDetail() {
           <Card.Header>
             Biyografi 
             {myProfile && <Popup trigger={<button className="ui button" style={{marginLeft:"1em"}}> Güncelle </button>} modal>
-                            <UpdateBiography cvId={cv.id} updateCvValues={updateCvValues}/>
+                            <UpdateBiography cvId={cv.id} updateCvValues={updateCvValues} curentBiography={cv.biography}/>
                           </Popup>}
           </Card.Header>
         </Card.Content>

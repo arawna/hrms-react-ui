@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { Button, Form } from "semantic-ui-react";
 import { toast } from 'react-toastify';
 
-export default function UpdateBiography({cvId,updateCvValues}) {
+export default function UpdateBiography({cvId,updateCvValues,curentBiography}) {
 
     let cvService = new CvService();
     const updateBiographySchema = Yup.object().shape({
@@ -15,7 +15,7 @@ export default function UpdateBiography({cvId,updateCvValues}) {
 
     const formik = useFormik({
         initialValues:{
-            biography:""
+            biography:curentBiography
         },
         validationSchema: updateBiographySchema,
         onSubmit:(values) =>{
