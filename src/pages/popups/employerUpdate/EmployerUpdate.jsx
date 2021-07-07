@@ -27,23 +27,7 @@ export default function EmployerUpdate() {
     webSite: Yup.string().required("Bu alan zorunludur")
   })
 
-  const formik = useFormik({
-      initialValues:{
-        companyName:"",
-        email:"",
-        phoneNumber:"",
-        webSite:"",
-      },
-      validationSchema:employerUpdateShema,
-      onSubmit:(values) => {
-          formik.values.employerId=authItem[0].user.id;
-          employerService.update(values).then((result) => {
-              toast.success(result.data.message)
-          }).catch((result) => {
-              toast.error(result.response.data.message)
-          })
-      }
-  })
+  let formik;
 
   useEffect(() => {
     let employerService = new EmployerService();
@@ -54,7 +38,25 @@ export default function EmployerUpdate() {
       formik.values.webSite=result.data.data.webSite
       setEmployer(result.data.data);
     });
-  }, [authItem,formik.values]);
+  }, [authItem,formik]);
+
+  formik = useFormik({
+    initialValues:{
+      companyName:"",
+      email:"",
+      phoneNumber:"",
+      webSite:"",
+    },
+    validationSchema:employerUpdateShema,
+    onSubmit:(values) => {
+        formik.values.employerId=authItem[0].user.id;
+        employerService.update(values).then((result) => {
+            toast.success(result.data.message)
+        }).catch((result) => {
+            toast.error(result.response.data.message)
+        })
+    }
+})
 
   return (
     <div>

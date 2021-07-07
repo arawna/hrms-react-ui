@@ -14,7 +14,7 @@ export default class EmployerService{
     }
 
     update(values){
-        return axios.put("https://kodlamaio-hrms.herokuapp.com/api/employer/update",values)
+        return axios.put("http://localhost:8080/api/employer/update",values)
     }
     
 }
