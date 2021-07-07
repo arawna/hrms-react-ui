@@ -20,13 +20,6 @@ export default function EmployerUpdate() {
 
   let [employer, setEmployer] = useState([]);
 
-  useEffect(() => {
-    let employerService = new EmployerService();
-    employerService.getEmployerById(authItem[0].user.id).then((result) => {
-      setEmployer(result.data.data);
-    });
-  }, [authItem]);
-
   const employerUpdateShema= Yup.object().shape({
     companyName: Yup.string().required("Bu alan boş birakılamaz").min(2,"En az 2 karakter uzunlugunda olmalıdır"),
     email: Yup.string().required("Bu alan zorunludur").email("Hatalı email girdiniz"),
@@ -52,9 +45,19 @@ export default function EmployerUpdate() {
       }
   })
 
+  useEffect(() => {
+    let employerService = new EmployerService();
+    employerService.getEmployerById(authItem[0].user.id).then((result) => {
+      formik.values.companyName=result.data.data.companyName
+      formik.values.email=result.data.data.email
+      formik.values.phoneNumber=result.data.data.phoneNumber
+      formik.values.webSite=result.data.data.webSite
+      setEmployer(result.data.data);
+    });
+  }, [authItem,formik.values]);
+
   return (
     <div>
-        {/* {(formik.values.companyName=employer.companyName)} */}
       {employer.waitingUpdate === true && (
         <Message positive>
           <Message.Header>Son güncelleme isteginiz onay bekliyor</Message.Header>
