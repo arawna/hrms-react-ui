@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import SchoolService from "../../../services/SchoolService";
-import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
+import { Card, Table, Button, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -83,8 +83,7 @@ export default function UpdateSchools({cvId,updateCvValues}) {
                 <Table.Cell>{school.startDate}</Table.Cell>
                 <Table.Cell>{school.endDate}</Table.Cell>
                 <Table.Cell>
-                  <Button color="red" onClick={() => handleDeleteScholl(school.id)}>
-                    <Icon name="x" />
+                  <Button color="red" icon="x" circular onClick={() => handleDeleteScholl(school.id)}>
                   </Button>
                 </Table.Cell>
               </Table.Row>

@@ -143,6 +143,7 @@ export default function JobAds() {
               {authItem[0].loggedIn && authItem[0].user.userType===1 &&
                 <Table.Cell>
                 <Button
+                    circular
                     icon={favorites.includes(jobAd.id)?"heart":"heart outline"}
                     color={favorites.includes(jobAd.id)?"red":"green"}
                     onClick = {() => handleAddFavorite(jobAd.id)}

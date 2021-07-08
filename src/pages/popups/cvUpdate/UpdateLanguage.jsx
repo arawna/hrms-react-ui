@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import LanguageService from "../../../services/LanguageService";
-import { Card, Table, Button, Icon, Form, Grid, Dropdown } from "semantic-ui-react";
+import { Card, Table, Button, Form, Grid, Dropdown } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -94,8 +94,7 @@ export default function UpdateLanguage({ cvId, updateCvValues }) {
                 <Table.Cell>{language.name}</Table.Cell>
                 <Table.Cell>{language.level}</Table.Cell>
                 <Table.Cell>
-                  <Button color="red" onClick={() => handleDeleteLanguage(language.id)}>
-                    <Icon name="x" />
+                  <Button color="red" icon="x" circular onClick={() => handleDeleteLanguage(language.id)}>
                   </Button>
                 </Table.Cell>
               </Table.Row>

@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import TechnologyService from "../../../services/TechnologyService";
-import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
+import { Card, Table, Button, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
@@ -102,8 +102,7 @@ export default function UpdateTechnology({ cvId, updateCvValues }) {
                 <Table.Row key={technology.id}>
                   <Table.Cell>{technology.name}</Table.Cell>
                   <Table.Cell>
-                    <Button color="red" onClick={() => handleDeleteTechnology(technology.id)}>
-                      <Icon name="x" />
+                    <Button color="red" icon="x" circular onClick={() => handleDeleteTechnology(technology.id)}>
                     </Button>
                   </Table.Cell>
                 </Table.Row>

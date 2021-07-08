@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import ExperianceService from '../../../services/ExperianceService'
-import { Card, Table, Button, Icon, Form, Grid } from "semantic-ui-react";
+import { Card, Table, Button, Form, Grid } from "semantic-ui-react";
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
@@ -82,8 +82,7 @@ export default function UpdateExperiance({cvId,updateCvValues}) {
                             <Table.Cell>{experiance.startDate}</Table.Cell>
                             <Table.Cell>{experiance.endDate ? experiance.endDate:<p>Devam ediyor</p>}</Table.Cell>
                             <Table.Cell>
-                            <Button color="red" onClick={() => handleDeleteExperiance(experiance.id)}>
-                                <Icon name="x" />
+                            <Button color="red" icon="x" circular onClick={() => handleDeleteExperiance(experiance.id)}>
                             </Button>
                             </Table.Cell>
                         </Table.Row>

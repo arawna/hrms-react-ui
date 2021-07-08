@@ -78,6 +78,7 @@ export default function JobAdFavorites() {
                                         <Button
                                             icon="x"
                                             color={"red"}
+                                            circular
                                             onClick={() => handleRemoveFavorite(favoriteAd.id)}
                                         />
                                     </Table.Cell>
