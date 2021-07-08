@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import {
   Table,
   Button,
-  Header,
   Icon,
   Pagination,
-  Dropdown
+  Dropdown,
+  Card
 } from "semantic-ui-react";
 import JobAdService from '../services/JobAdService';
 import JobAdFilter from '../layouts/filters/JobAdFilter';
@@ -92,11 +92,14 @@ export default function JobAds() {
     <div>
       <JobAdFilter clickEvent={handleFilterClick}/>
 
-      <Header  as="h2">
-        <Icon name="bullhorn" />
-        <Header.Content>İş İlanları</Header.Content>
-      </Header>
-
+      <Card fluid>
+        <div style={{marginTop:"1em",marginLeft:"1em"}}>
+        <Card.Header as="h2">
+          <Icon name="bullhorn" />
+          İş İlanları
+        </Card.Header>
+        </div>
+      
       <Table  color="black" celled>
         <Table.Header>
           <Table.Row>
@@ -154,7 +157,8 @@ export default function JobAds() {
           ))}
         </Table.Body>
       </Table>
-      
+      <Card.Content>
+      <div>
       <Pagination
         firstItem={null}
         lastItem={null}
@@ -172,9 +176,12 @@ export default function JobAds() {
           selection
           defaultValue={pageSize}
           text={"Sayfalama - " + pageSize}
-          style={{ marginLeft: "2em" }}
+          style={{ float: "right" }}
           options={paginationOptions}
       />
+      </div>
+      </Card.Content>
+      </Card>
 
     </div>
   )
