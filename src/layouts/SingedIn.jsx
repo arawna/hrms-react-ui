@@ -16,6 +16,7 @@ export default function SingedIn() {
 
     const handleLogout=(user)=>{
         dispatch(userLogout(user))
+        localStorage.removeItem("user");
         history.push("/")
     }
 

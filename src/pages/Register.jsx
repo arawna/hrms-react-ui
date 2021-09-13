@@ -13,6 +13,7 @@ import {
 import CandidateService from "../services/CandidateService";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 export default function Register() {
 
@@ -56,8 +57,20 @@ export default function Register() {
     formik.setFieldValue(fieldName,value);
   }
 
+  const {authItem} = useSelector(state => state.auth)
+
   return (
     <div>
+      {authItem[0].loggedIn === true &&
+        <div>
+          <Message negative>
+            <Message.Header>Zaten giriş yapmış durumdasınız.</Message.Header>
+            <p>İsterseniz çıkış yapıp tekrar deneyebilirsiniz.</p>
+          </Message>
+        </div>
+      }
+      {authItem[0].loggedIn === false && 
+      <div>
       <Header as="h2" color="teal" textAlign="center">
         <Image src="https://hrms.ph/img/logo-large.png" /> Kayıt Ol
       </Header>
@@ -234,6 +247,7 @@ export default function Register() {
         </Segment>
       </Form>
       <Message info><Link to={"/registerEmployer"}><b>İşveren olarak kaydolmak için buraya tıkla</b></Link></Message>
+      </div>}
     </div>
   );
 }

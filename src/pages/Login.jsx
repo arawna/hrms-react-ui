@@ -4,13 +4,14 @@ import { Button, Form, Header, Image, Message, Segment } from 'semantic-ui-react
 import UserService from "../services/UserService";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../store/actions/authActions";
 import { toast } from "react-toastify";
 
 export default function Login() {
 
   const dispatch = useDispatch()
+  const {authItem} = useSelector(state => state.auth)
 
   const handleLogin=(user)=>{
     dispatch(userLogin(user))
@@ -33,6 +34,7 @@ export default function Login() {
     onSubmit:(values) => {
       userService.login(values).then((result) => {
         handleLogin(result.data.data)
+        localStorage.setItem("user",JSON.stringify(result.data.data))
         history.push("/")
       }).catch((result) => {
         toast.error(result.response.data.message)
@@ -42,6 +44,16 @@ export default function Login() {
 
   return (
     <div>
+      {authItem[0].loggedIn === true &&
+        <div>
+          <Message negative>
+            <Message.Header>Zaten giriş yapmış durumdasınız.</Message.Header>
+            <p>İsterseniz çıkış yapıp tekrar giriş yapmayı deneyebilirsiniz.</p>
+          </Message>
+        </div>
+      }
+      {authItem[0].loggedIn === false &&
+      <div>
       <Header as="h2" color="teal" textAlign="center">
         <Image src="https://hrms.ph/img/logo-large.png" /> Giriş Yap
       </Header>
@@ -98,6 +110,8 @@ export default function Login() {
       <Message info>
         Kayıtlı değilmisin? <b><Link to={"/register"}>Şimdi Kaydol</Link></b>
       </Message>
+      </div>
+      }
     </div>
   );
 }
